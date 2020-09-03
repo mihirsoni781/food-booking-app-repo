@@ -1,0 +1,11 @@
+<div class="container-l bgcolor-2" style="flex-direction: column; align-items:center; padding:0;">
+    <div class="traynavbar bgcolor-2" style=" max-width: 100vw; width: 90%; z-index: 2;  position: sticky;
+  top: 0;">
+        <a routerLink="categories" routerLinkActive="active" >Categories</a>
+        <a routerLink="foods" routerLinkActive="active" >Foods</a>
+        <a routerLink="customers" routerLinkActive="active" >View Customers</a>
+        <a routerLink="bookings" routerLinkActive="active" >View Bookings</a>
+        <a (click)="logout()" style=" margin-top: 5px; background-color: black; padding: 5px 10px;">Logout</a>
+    </div>
+    <router-outlet></router-outlet>
+</div>

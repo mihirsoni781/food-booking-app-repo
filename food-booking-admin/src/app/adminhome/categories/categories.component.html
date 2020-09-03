@@ -1,0 +1,48 @@
+<table class="customTable1" style="margin-top: 20px;">
+    <tr>
+        <th>
+            +
+        </th>
+        
+        <td class="btn" style="background-color:black;">
+            <form #catForm="ngForm" (submit)="addCat()">
+            <input required name="cattoadd" [(ngModel)]="catToAdd" type="text" class="inputs">
+            <button [disabled]='catForm.invalid' type="submit"
+                style="display: inline-block; color:white; height: 100%; border-style: none; cursor: pointer; background-color: transparent;">
+                Add+
+            </button>
+            </form>
+        </td>
+    </tr>
+    
+    <tr *ngFor="let cat of cats; index as i">
+        <th>
+            {{i+1}}
+        </th>
+        <td>
+            {{cat.name}}
+        </td>
+        <td (click)="edit=i" class="btn">
+            Edit
+        </td>
+        <td class="btn" (click)="removeCat(i)">
+            <i class="fa fa-trash"></i>
+        </td>
+        <div *ngIf="edit==i" class="formContainer alertBox">
+            Edit Category
+            <form class="customForm1" action="" style=" z-index: 2; backdrop-filter: none;">
+                <label for="">Category name</label>
+                <input #newName autofocus type="text" name="catname" [ngModel]="cat.name" >
+                <div>
+                    <button (click)="saveCat(i,newName)">
+                        Save
+                    </button>
+                    <button (click)="edit=null">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </tr>
+
+</table>

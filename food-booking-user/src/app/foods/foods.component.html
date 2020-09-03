@@ -1,0 +1,14 @@
+<div style="min-height: 88vh; height: 100%; padding: 20px; background-color: rgb(230, 230, 230); ">
+    <div *ngFor='let food of foods' style="display: inline-block; height: fit-content; width: 200px; background-color: white; display: inline-flex;justify-content: center; filter: drop-shadow(2px 2px 10px gray); margin: 10px;">
+        <div>
+            <img [src]="food.imageDataUrl" height="200px" width="200px" style="object-fit:cover;" alt="">
+            <div style="margin: 10px;">
+                <span style="font-size: 12px;  font-weight: 600;">{{food.name}}</span>
+                <br>
+                <span style="font-size: 11px; color:grey;  font-weight: 300;">{{food.description}}</span>
+                <br>
+                <button (click)="placeOrder(food._id)" class="btn">Place Order Rs.{{food.cost}}/-</button>
+            </div>
+        </div>
+    </div>
+</div>

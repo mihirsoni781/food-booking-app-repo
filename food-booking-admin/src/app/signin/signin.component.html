@@ -1,0 +1,33 @@
+<div class="formContainer bgcolor-2">
+    <span class="span-l">Admin</span>
+    <div class="traynavbar">
+        <a (click)="signin=1" [class.active]="signin" >Sign in</a>
+        <a (click)="signin=0" [class.active]="!signin">Sign up</a>
+    </div>
+    <form #signinForm="ngForm" *ngIf="signin" (submit)="AdminSignIn(signinForm.value)" action="" class="customForm1">
+        <label for="email">Email</label>
+        <input required ngModel name="email" id="email" type="text"><br>
+        <label for="pass">Password</label>
+        <input required ngModel name="password" id="pass" type="password"><br>
+        <button [class.disabled]='signinForm.invalid' [disabled]='signinForm.invalid' type="submit">Sign in</button>
+    </form>
+
+    <form #signupForm="ngForm" (submit)="AdminSignUp(signupForm.value)" *ngIf="!signin" action="" class="customForm1">
+        <label for="fn">Full name</label>
+        <input required ngModel name="name" id="fn" type="text"><br>
+    
+        <label for="email">Email</label>
+        <input required ngModel name="email" id="email" type="text"><br>
+    
+        <label for="phone">Phone</label>
+        <input required ngModel name="phone" id="phone" type="text"><br>
+    
+        <label for="pass">Create Password</label>
+        <input minlength="6" required ngModel name="password" id="pass" type="password"><br>
+        <button  [class.disabled]='signupForm.invalid' [disabled]='signupForm.invalid' type="submit">Sign up</button>
+    </form>
+
+    <div *ngIf="alertMsg" id="alert" class="alert">
+            {{alertMsg}}
+    </div>
+</div>

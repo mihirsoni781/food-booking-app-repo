@@ -1,0 +1,42 @@
+<div class="header" style="background-color: black;">
+
+  <div class="logo">
+    Logo
+  </div>
+  <button id="dropmenu" (click)="menu=1-menu" class="btn-fa" style=" color: white; position: absolute; right: 30px;" >
+    Menu 
+    <i class="fa fa-bars">
+    </i>
+  </button>
+  <div (click)="menu=1-menu" class="dropnavbar" *ngIf="menu" style="margin:0 ; max-width: 90vw; text-align: left ;">
+    <a routerLinkActive = "active" routerLink = "/home">Home</a>
+    <a routerLinkActive = "active" routerLink = "/about-us">About us</a>
+    <a routerLinkActive = "active" routerLink = '/foods/{{cat._id}}' *ngFor="let cat of cats">{{cat.name}}</a>
+    <a *ngIf="user.name" routerLinkActive="active" routerLink="/orderhistory">Order History</a>
+
+    <a *ngIf="!user.name" routerLinkActive="active" routerLink = 'login'>Login</a>
+    <button *ngIf="user.name" (click)="logout()" class="btn" style="color: white; background-color: rgba(255, 255, 255, .1); border-radius: 20px;">
+      {{user.name}} <i class="fa fa-power-off" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div *ngIf="menu" (click)="menu=1-menu" class="blocker">
+
+  </div>
+
+  <div id='traynavbar' class="traynavbar" style="margin:0 ; max-width: 90vw; text-align: left ;">
+    <a routerLinkActive="active" routerLink="/home">Home</a>
+    <a routerLinkActive="active" routerLink="/about-us">About us</a>
+    <a routerLinkActive="active" routerLink='/foods/{{cat._id}}' *ngFor="let cat of cats">{{cat.name}}</a>
+    <a *ngIf="user.name" routerLinkActive="active" routerLink="/orderhistory">Order History</a>
+  
+    <a *ngIf="!user.name" routerLinkActive="active" routerLink='login'>Login</a>
+    <button *ngIf="user.name" (click)="logout()" class="btn"
+      style="color: white; background-color: rgba(255, 255, 255, .1); border-radius: 20px;">
+      {{user.name}} <i class="fa fa-power-off" aria-hidden="true"></i>
+    </button>
+  </div>
+
+
+</div>
+<router-outlet></router-outlet>

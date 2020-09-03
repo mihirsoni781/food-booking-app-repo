@@ -1,0 +1,33 @@
+<style>
+    td{
+        text-align: center;
+
+    }
+</style>
+<table *ngIf="customers.length" class="customTable1" style="max-width: 1200px; margin-top: 20px;">
+    <tr>
+        <th>SNo.</th>
+        <th>Customer name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+    </tr>
+    <tr *ngFor='let customer of customers; index as i'>
+        <th>
+            {{i+1}}
+        </th>
+        <td>
+            {{customer.name}}
+        </td>
+        <td>
+            {{customer.email}}
+        </td>
+        <td>
+            {{customer.phone}}
+        </td>
+        <td>
+            {{customer.address}}
+        </td>
+    </tr>
+
+</table>

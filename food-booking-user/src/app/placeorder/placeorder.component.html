@@ -1,0 +1,45 @@
+
+<div class="bg" style="height: fit-content; min-height: 100vh; display: flex; justify-content: center;">
+    <div style="padding: 10px; font-size: 30px; text-align: center;">
+        
+        <div class="formContainer1" style="background-color: rgb(35, 35, 35); padding: 20px 5px; text-align: center; color: white; min-width: 300px;">
+            <span>Food Order</span><br>
+            <div style="display: inline-block;">
+                <style>
+                    input{
+                        width: 200px;
+                    }
+                </style>
+                <form *ngIf="order['name']" #orderForm="ngForm" action="" class="customForm1" (submit)="placeOrder()" >
+                    <label for="">Food Name</label>
+                    <input [ngModel]='order.name' disabled name="name"  type="text">
+
+                    <label for="">Food Description</label>
+                    <input [ngModel]='order.description' name="description" disabled type="text">
+
+                    <label for="">Food Cost</label>
+                    <input [ngModel]='order.cost' name="cost" disabled type="text">
+
+                    <label for="">Customer Name</label>
+                    <input [ngModel]='order.customername' name="customername" disabled type="text">
+
+                    <label for="">Customer Email</label>
+                    <input [ngModel]='order.customeremail' name="customeremail" disabled type="text">
+
+                    <label for="">Customer Phone</label>
+                    <input [ngModel]='order.customerphone' name="customerphone" disabled type="text">
+
+                    <label for="">Address <span style="color:red;">*</span></label>
+                    <input  required [(ngModel)]='order.customeraddress' name="customeraddress" type="text">
+
+                    <label for="">Quantity <span style="color:red;">*</span></label>
+                    <input autofocus [(ngModel)]='order.quantity' required  name="quantity" type="number">
+                    <div style="font-size: 15px;">
+                        Total: {{order.cost*order.quantity}}/-
+                        <button type="submit" [disabled]='orderForm.invalid' style="align-self:flex-end">Place</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="bg" style="min-height: 88vh; height: 100%; padding: 20px; display: flex; align-items: center; flex-direction: column; ">
+
+    <div class="formContainer" style="background-color: black; max-width: fit-content; margin-top: 10vh;">
+        <div class="traynavbar">
+            <a (click)="login=1" [class.active] = "login" >Login</a>
+            <a (click)="login=0"  [class.active] = "!login" >Sign up</a>
+        </div>
+        <form #logInForm = "ngForm" (submit) = "logIn(logInForm.value)" *ngIf="login" action="" class="customForm1">
+            <label  for="">Email</label>
+            <input required ngModel name='email' type="text">
+            <label for="">Password</label>
+            <input required ngModel name="password" type="password">
+            <button [class.disabled]='logInForm.invalid' [disabled]='logInForm.invalid' type="submit">Login</button>
+        </form>
+        <form #signUpForm = "ngForm" (submit) = "signUp(signUpForm.value)" *ngIf="!login" action="" class="customForm1">
+                
+            <label for="">Name</label>
+            <input required  ngModel name="name" type="text">
+            <label for="">Email</label>
+            <input required  ngModel name="email" type="text">
+            <label for="">Phone</label>
+            <input required  ngModel name="phone" type="text">
+            <label for="">Address</label>
+            <input required  ngModel name="address" type="text">
+            <label for="">Password</label>
+            <input minlength="6"  required ngModel name="password" type="password">
+            <button [class.disabled]="signUpForm.invalid" [disabled]="signUpForm.invalid" type="submit">Sign up</button>
+        </form>
+        <div *ngIf="alert" style="color:white; opacity: .4; font-size: 11px; background-color: rgba(255, 255,255, .1); padding: 10px 20px; border-radius: 20px;">
+            {{alert}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div style=" font-size: 12px; display: flex; flex-direction: column; align-items: center; margin: 5px 30px;">
+    <div (click)="add=1" style=" cursor: pointer; background-color: black; padding: 10px; width: 100%; text-align: center;">
+        Add+
+    </div>
+</div>
+
+<div *ngIf="add" class="formContainer alertBox">
+    <div class="formContainer bgcolor-1">
+        Add Food
+        <form #Form1 = 'ngForm' (submit) = "addFood(Form1.value,$event)" class="customForm1" action="" enctype="multipart/form-data">
+            <label for="name">Food Name</label>
+            <input required ngModel name="name" id="name" type="text">
+    
+            <label for="desc">Description</label>
+            <input ngModel name="desc" id="desc" type="text">
+    
+            <label for="cost">Cost</label>
+            <input required ngModel name="cost" id="cost" type="text">
+    
+            <label for="cat">Category</label>
+            <select required ngModel name="cat" id="cat" style="align-self: flex-start; background-color: whitesmoke;">
+                <option value="null">Select Category</option>
+                <option *ngFor="let cat of cats" value="{{cat._id}}">{{cat.name}}</option>
+            </select>
+    
+            <label for="">Food Image</label>
+            <label for="img" class="imgInput">Add Image</label>
+            <input ngModel id="img" name="file" type="file" accept="image/jpeg" style="display: none;">
+            <div>
+
+                <button [disabled]='Form1.invalid' type="submit">Add+</button>
+                <button (click)="add=null" type="button">Cancel</button>
+            </div>  
+        </form>
+    </div>
+</div>
+
+<div *ngIf="tmpFood" class="formContainer alertBox">
+    <div class="formContainer bgcolor-1">
+        Edit Food <br>
+        <form #Form2='ngForm' (submit)="updateFood($event)" class="customForm1" action=""
+            enctype="multipart/form-data">
+            <label for="name">Food Name</label>
+            <input required [(ngModel)]="tmpFood.name" name="name" id="name" type="text">
+
+            <label for="desc">Description</label>
+            <input [(ngModel)]="tmpFood.description" name="desc" id="desc" type="text">
+
+            <label for="cost">Cost</label>
+            <input required [(ngModel)]="tmpFood.cost" name="cost" id="cost" type="text">
+
+            <label for="cat">Category</label>
+            <select required [(ngModel)]="tmpFood.catId" name="cat" id="cat" style="align-self: flex-start; background-color: whitesmoke;">
+                <option value="null">Select Category</option>
+                <option *ngFor="let cat of cats" value="{{cat._id}}">{{cat.name}}</option>
+            </select>
+
+            <label for="">Food Image <br>
+                <img style="object-fit:cover;" src="" height="100px" style="margin-top: 10px;" [src]="tmpFood.imageDataUrl" alt="">
+            </label>
+            <label for="img"  class="imgInput">Update Image</label>
+            
+            <input ngModel (change)="preview($event)" id="img" name="file" type="file" accept="image/jpeg" style="display: none;">
+            <div>
+                <button [disabled]="Form2.invalid" type="submit">Update</button>
+                <button  (click)="tmpFood=null" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="customTable2" style="margin: 10px 20px;">
+    <tr *ngFor="let food of foods; index as i">
+        <th>
+            {{i+1}}
+        </th>
+        <td>
+            {{food.name}} <span *ngIf="food.catId!='null'" style=" display: inline-block; padding: 5px 8px; font-size: 11px; margin:5px; background-color: green; border-radius: 20px;">{{getCat(food.catId)}}</span>
+            <p>
+                {{food.description}}
+            </p>
+            <div style="margin-bottom: 10px;">
+                Rs. {{food.cost}}/-
+            </div>
+        </td>
+        <td class="image">
+            <div style="width: 100px; height: 100px ; background-color: rgb(209, 209, 209);">
+                <img style="object-fit:cover;" height="100px" width="100px" [src]="food.imageDataUrl" alt="">
+            </div>
+
+            <div class="buttons" style="display: inline-block; vertical-align: middle;">
+                <div class="btn" (click)="editFood(i)" >
+                    Edit
+                </div>
+                <div class="btn" (click)="deleteFood(i)" >
+                    <i class="fa fa-trash"></i>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
